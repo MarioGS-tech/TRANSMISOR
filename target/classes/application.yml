@@ -1,0 +1,73 @@
+spring:
+  application:
+    name: factElec
+  datasource:
+    # url: ${SPRING_DATASOURCE_URL}
+    # username: ${SPRING_DATASOURCE_USERNAME}
+    # password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:mysql://localhost:3307/cnr?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+server:
+  servlet:
+    context-path: /factElec
+logging:
+  level:
+    root: info
+configuracion:
+  # ambiente : ${AMBIENTE_MH} # 00 pruebas 01 producción
+  ambiente : "00" # 00 pruebas 01 producción
+  api-hacienda:
+    endpoint-auth : "https://apitest.dtes.mh.gob.sv/seguridad/auth"
+    endpoint-transmitir-dte-individual : "https://apitest.dtes.mh.gob.sv/fesv/recepciondte"
+    endpoint-anular-dte-individual : "https://apitest.dtes.mh.gob.sv/fesv/anulardte"
+    endpoint-consultar-dte-individual : "https://apitest.dtes.mh.gob.sv/fesv/recepcion/consultadte/"
+    endpoint-evento-contingencia:  "https://apitest.dtes.mh.gob.sv/fesv/contingencia"
+    endpoint-auth-pro : "https://api.dtes.mh.gob.sv/seguridad/auth"
+    endpoint-transmitir-dte-individual-pro: "https://api.dtes.mh.gob.sv/fesv/recepciondte"
+    endpoint-anular-dte-individual-pro: "https://api.dtes.mh.gob.sv/fesv/anulardte"
+    endpoint-consultar-dte-individual-pro: "https://api.dtes.mh.gob.sv/fesv/recepcion/consultadte/"
+    endpoint-evento-contingencia-pro: "https://api.dtes.mh.gob.sv/fesv/contingencia"
+  api-firmador:
+    # endpoint-firmar : ${FIRMADOR_URL}
+    endpoint-firmar : "http://localhost:8113/firma/firmardocumento/"
+
+    #ENDPOINT DE DOCKER FIRMADOR
+
+    #endpoint-firmar : "http://API-FIRMADOR:8113/firma/firmardocumento/"
+  contingencia:
+    tipo-contingencia: "1"
+    motivo-contingencia: "Conexión a Internet inestable o caída"
+  smtp:
+    # email: ${EMAIL}
+    # password: ${PASSWORD_CORREO}
+    # host: ${HOST_CORREO}
+    # port: ${PUERTO}
+    # auth: ${AUTH}
+    # starttls-enable: ${starttls-enable}
+    # trust: ${trust}
+    email: "no-reply-cnr2@outlook.com"
+    password: "Cnr12345"
+    host: "smtp.office365.com"
+    port: "587"
+    auth: "true"
+    starttls-enable: "true"
+    trust: "smtp.office365.com"
+
+  whatsapp:
+    telefono: "5037147844"
+    endpoint-subir-archivo: "https://graph.facebook.com/v18.0/289485390908287/messages"
+    endpoint-enviar-mensaje: "https://graph.facebook.com/v18.0/289485390908287/messages"
+  api-cnr:
+    # endpoint-consultar-comprobante-pago: ${comprobante-pago}
+    # endpoint-especifico-comprobante-pago: ${ESPECIFICO_CP}
+    #endpoint-consultar-comprobante-pago: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/valcp/"
+    endpoint-especifico-comprobante-pago: "https://api-desa.cnr.gob.sv/apifacturael/api/consulta/actualizarEspecifico/"
