@@ -94,7 +94,7 @@ public class DocumentosCNRServices {
             dteTransaccionService.save(dteTransaccion);
 
         } catch (Exception e) {
-            log.error("Erorr en método subirArchivo", e);
+            log.error("Error en método subirArchivo", e);
         }
     }
 
